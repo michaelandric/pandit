@@ -6,7 +6,7 @@ python exec_makesubmitargs.py >> submit.try
 where 'submit.try' is the condor_submit file that you're adding arguments to
 """
 
-from makesubmitargs import makeargs as mm
+from makesubmitargs import makearg as mm
 
 groups = ["ctrl", "pandit"]
 hemispheres = ["lh", "rh"]
