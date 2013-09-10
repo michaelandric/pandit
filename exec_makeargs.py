@@ -14,4 +14,5 @@ hemispheres = ["lh", "rh"]
 for g in groups:
     for h in hemispheres:
         #mm.fcorr_args(g, h)
-        mm.threshold_convert_args(g, h)
+        #mm.threshold_convert_args(g, h)
+        mm.blondel_args(g, h)
