@@ -1,7 +1,19 @@
-executable = RInvoke.sh
+executable = RInvoke.py
 universe 	= vanilla
 getenv		= true
 output		= ./logs/1.$(Process).out
 error		= ./logs/1.$(Process).err
 log 		= ./logs/1.$(Process).log
+
+arguments    = 1.corr_matrix.R ctrl lh 
+queue 
+
+arguments    = 1.corr_matrix.R ctrl rh 
+queue 
+
+arguments    = 1.corr_matrix.R pandit lh 
+queue 
+
+arguments    = 1.corr_matrix.R pandit rh 
+queue 
 
