@@ -1,4 +1,4 @@
-executable = RInvoke.sh
+executable = RInvoke.py
 universe 	= vanilla
 getenv		= true
 output		= ./logs/1.$(Process).out
