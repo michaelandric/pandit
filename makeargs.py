@@ -26,4 +26,11 @@ class MakeArgs:
     def threshold_convert_args(self, group, arg1):
         print "arguments    = 2.threshold_convert.R "+group+" "+arg1+" \nqueue \n"
 
+    def blondel_args(self, group, arg1):
+        """
+        'arg1' is hemisphere
+        'arg2' is threshold
+        """
+        print "arguments   = 3.blondel "+group+" "+arg1+" 0.5 \nqueue \n"
+
 makearg = MakeArgs()
