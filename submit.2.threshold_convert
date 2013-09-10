@@ -5,3 +5,15 @@ output		= ./logs/2.$(Process).out
 error		= ./logs/2.$(Process).err
 log 		= ./logs/2.$(Process).log
 
+arguments    = 2.threshold_convert.R ctrl lh 
+queue 
+
+arguments    = 2.threshold_convert.R ctrl rh 
+queue 
+
+arguments    = 2.threshold_convert.R pandit lh 
+queue 
+
+arguments    = 2.threshold_convert.R pandit rh 
+queue 
+
