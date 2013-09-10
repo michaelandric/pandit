@@ -1,0 +1,7 @@
+executable = RInvoke.py
+universe 	= vanilla
+getenv		= true
+output		= ./logs/2.$(Process).out
+error		= ./logs/2.$(Process).err
+log 		= ./logs/2.$(Process).log
+
