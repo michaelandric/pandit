@@ -1,0 +1,7 @@
+executable = RInvoke.sh
+universe 	= vanilla
+getenv		= true
+output		= ./logs/1.$(Process).out
+error		= ./logs/1.$(Process).err
+log 		= ./logs/1.$(Process).log
+
