@@ -22,5 +22,8 @@ class MakeArgs:
         'arg1' is hemisphere
         """
         print "arguments    = 1.corr_matrix.R "+group+" "+arg1+" \nqueue \n"
+        
+    def threshold_convert_args(self, group, arg1):
+        print "arguments    = 2.threshold_convert.R "+group+" "+arg1"+ \nqueue \n"
 
 makearg = MakeArgs()
