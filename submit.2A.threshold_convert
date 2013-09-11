@@ -1,0 +1,13 @@
+executable = RInvoke.py
+universe 	= vanilla
+getenv		= true
+output		= ./logs/2A.$(Process).out
+error		= ./logs/2A.$(Process).err
+log 		= ./logs/2A.$(Process).log
+
+arguments    = 2A.threshold_convert.R ctrl 
+queue 
+
+arguments    = 2A.threshold_convert.R pandit 
+queue 
+
