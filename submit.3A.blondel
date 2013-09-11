@@ -1,0 +1,14 @@
+executable  = RInvoke_blondelA.py
+universe    = vanilla
+getenv      = true
+output      = ./logs/3A.$(Process).out
+error       = ./logs/3A.$(Process).err
+log         = ./logs/3A.$(Process).log
+
+
+arguments   = 3A.blondel ctrl 0.5 
+queue 
+
+arguments   = 3A.blondel pandit 0.5 
+queue 
+
