@@ -1,0 +1,13 @@
+executable = RInvoke.py
+universe 	= vanilla
+getenv		= true
+output		= ./logs/1A.$(Process).out
+error		= ./logs/1A.$(Process).err
+log 		= ./logs/1A.$(Process).log
+
+arguments    = 1.corr_matrix.R ctrl 
+queue 
+
+arguments    = 1.corr_matrix.R pandit 
+queue 
+
