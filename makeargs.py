@@ -33,4 +33,7 @@ class MakeArgs:
         """
         print "arguments   = 3.blondel "+group+" "+arg1+" 0.5 \nqueue \n"
 
+    def hierarchy_args(self, group):
+        print "arguments   = 4.hierarchy.R "+group+" \nqueue \n"
+
 makearg = MakeArgs()
