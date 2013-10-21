@@ -36,4 +36,15 @@ class MakeArgs:
     def hierarchy_args(self, group):
         print "arguments   = 4.hierarchy.R "+group+" \nqueue \n"
 
+    def batch_perms(self, arg1, arg2):
+        print "arguments    = 6.perm_run.R "+`arg1`+" "+`arg2`+" \nqueue \n"
+
+    def batch_perms2(self, arg1, arg2):
+        print "arguments    = 7.perm_thresh_convert.R "+`arg1`+" "+`arg2`+" \nqueue \n"
+
+    def batch_blondel_hier_perms(self, arg1, arg2):
+        print "arguments    = 8.blondel_perm "+`arg1`+" "+`arg2`+" \nqueue \n"
+
+
+
 makearg = MakeArgs()
