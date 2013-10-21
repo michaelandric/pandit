@@ -45,6 +45,9 @@ class MakeArgs:
     def batch_blondel_hier_perms(self, arg1, arg2):
         print "arguments    = 8.blondel_perm "+`arg1`+" "+`arg2`+" \nqueue \n"
 
+    def batch_nmi_perms(self, arg1, arg2):
+        print "arguments    = 10.mutInfo_perm.R "+`arg1`+" "+`arg2`+" \nqueue \n"
+
 
 
 makearg = MakeArgs()

@@ -30,4 +30,5 @@ ends[len(ends) - 1] = total
 
 for i in range(0, len(batch_starts)):
     #mm.batch_perms2(batch_starts[i], ends[i])
-    mm.batch_blondel_hier_perms(batch_starts[i], ends[i])
+    #mm.batch_blondel_hier_perms(batch_starts[i], ends[i])
+    mm.batch_nmi_perms(batch_starts[i], ends[i])
