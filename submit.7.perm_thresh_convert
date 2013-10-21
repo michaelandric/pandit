@@ -1,0 +1,38 @@
+executable = RInvoke.py
+universe    = vanilla
+getenv      = true
+output      = ./logs/7.$(Process).out
+error       = ./logs/7.$(Process).err
+log         = ./logs/7.$(Process).log
+
+
+arguments    = 7.perm_thresh_convert.R 1 100 
+queue 
+
+arguments    = 7.perm_thresh_convert.R 101 200 
+queue 
+
+arguments    = 7.perm_thresh_convert.R 201 300 
+queue 
+
+arguments    = 7.perm_thresh_convert.R 301 400 
+queue 
+
+arguments    = 7.perm_thresh_convert.R 401 500 
+queue 
+
+arguments    = 7.perm_thresh_convert.R 501 600 
+queue 
+
+arguments    = 7.perm_thresh_convert.R 601 700 
+queue 
+
+arguments    = 7.perm_thresh_convert.R 701 800 
+queue 
+
+arguments    = 7.perm_thresh_convert.R 801 900 
+queue 
+
+arguments    = 7.perm_thresh_convert.R 901 1000 
+queue 
+

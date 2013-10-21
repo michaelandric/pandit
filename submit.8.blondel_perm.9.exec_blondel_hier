@@ -1,0 +1,38 @@
+executable = RInvoke_blondel_perm.py
+universe    = vanilla
+getenv      = true
+output      = ./logs/8.$(Process).out
+error       = ./logs/8.$(Process).err
+log         = ./logs/8.$(Process).log
+
+
+arguments    = 8.blondel_perm 1 100 
+queue 
+
+arguments    = 8.blondel_perm 101 200 
+queue 
+
+arguments    = 8.blondel_perm 201 300 
+queue 
+
+arguments    = 8.blondel_perm 301 400 
+queue 
+
+arguments    = 8.blondel_perm 401 500 
+queue 
+
+arguments    = 8.blondel_perm 501 600 
+queue 
+
+arguments    = 8.blondel_perm 601 700 
+queue 
+
+arguments    = 8.blondel_perm 701 800 
+queue 
+
+arguments    = 8.blondel_perm 801 900 
+queue 
+
+arguments    = 8.blondel_perm 901 1000 
+queue 
+

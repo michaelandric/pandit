@@ -1,0 +1,39 @@
+executable = RInvoke.py
+universe    = vanilla
+getenv      = true
+output      = ./logs/6.$(Process).out
+error       = ./logs/6.$(Process).err
+log         = ./logs/6.$(Process).log
+
+
+
+arguments    = 6.perm_run.R 1 100 
+queue 
+
+arguments    = 6.perm_run.R 101 200 
+queue 
+
+arguments    = 6.perm_run.R 201 300 
+queue 
+
+arguments    = 6.perm_run.R 301 400 
+queue 
+
+arguments    = 6.perm_run.R 401 500 
+queue 
+
+arguments    = 6.perm_run.R 501 600 
+queue 
+
+arguments    = 6.perm_run.R 601 700 
+queue 
+
+arguments    = 6.perm_run.R 701 800 
+queue 
+
+arguments    = 6.perm_run.R 801 900 
+queue 
+
+arguments    = 6.perm_run.R 901 1000 
+queue 
+
