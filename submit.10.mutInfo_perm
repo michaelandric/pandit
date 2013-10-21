@@ -1,0 +1,38 @@
+executable = RInvoke.py
+universe    = vanilla
+getenv      = true
+output      = ./logs/10.$(Process).out
+error       = ./logs/10.$(Process).err
+log         = ./logs/10.$(Process).log
+
+
+arguments    = 10.mutInfo_perm.R 1 100 
+queue 
+
+arguments    = 10.mutInfo_perm.R 101 200 
+queue 
+
+arguments    = 10.mutInfo_perm.R 201 300 
+queue 
+
+arguments    = 10.mutInfo_perm.R 301 400 
+queue 
+
+arguments    = 10.mutInfo_perm.R 401 500 
+queue 
+
+arguments    = 10.mutInfo_perm.R 501 600 
+queue 
+
+arguments    = 10.mutInfo_perm.R 601 700 
+queue 
+
+arguments    = 10.mutInfo_perm.R 701 800 
+queue 
+
+arguments    = 10.mutInfo_perm.R 801 900 
+queue 
+
+arguments    = 10.mutInfo_perm.R 901 1000 
+queue 
+
