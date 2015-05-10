@@ -79,3 +79,68 @@ class GRAPHS:
         """
         c, q = bct.modularity_louvain_und(nx.adjacency_matrix(graph).toarray())
         return (c, q)
+
+    def max_q(self, fname):
+        """
+        Get the maximum modularity value
+        :param fname: File name containing Q values
+        :return : max q value, iteration with max q value
+        """
+        print 'Getting max q value -- %s' % time.ctime()
+        q_vals = np.loadtxt(fname)
+        iter_max = q_vals.argmax()+1
+        return (np.max(q_vals), iter_max)
+
+    def n_modules(self, tname):
+        """
+        Get the number of modules
+        :param tname: File name for tree
+        :return : number of modules > 1
+        """
+        from collections import Counter
+        print 'Getting number of modules -- %s' % time.ctime()
+        n_mods = np.zeros(100)
+        tree = np.loadtxt(tname)
+        cnts = np.array(Counter(tree[:, 1]).values())
+        n_mods = len(cnts[np.where(cnts > 1)])
+        return n_mods
+
+
+def adj_rand(p1, p2, ss):
+    """
+    Return the Adjusted Rand Index
+    across two partitions
+    :param p1: partition 1
+    :param p2; partition 2
+    :return : Adjusted Rand Score
+    """
+    from sklearn.metrics import adjusted_rand_score
+    if len(p1) != len(p2):
+        print 'Subject %s needs a fix' % ss
+        if len(p1) < len(p2):
+            p1 = np.append(p1, p1[len(p1)-1])
+        elif len(p2) < len(p1):
+            p2 = np.append(p2, p2[len(p2)-1])
+
+    ari = adjusted_rand_score(p1, p2)
+    return ari
+
+
+def normalized_MI(p1, p2, ss):
+    """
+    Return the normalized mutual information
+    across two partitions
+    :param p1: partition 1
+    :param p2; partition 2
+    :return : normalized mutual information score
+    """
+    from sklearn.metrics import normalized_mutual_info_score
+    if len(p1) != len(p2):
+        print 'Subject %s needs a fix' % ss
+        if len(p1) < len(p2):
+            p1 = np.append(p1, p1[len(p1)-1])
+        elif len(p2) < len(p1):
+            p2 = np.append(p2, p2[len(p2)-1])
+
+    nmi = normalized_mutual_info_score(p1, p2)
+    return nmi
