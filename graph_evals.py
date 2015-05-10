@@ -102,6 +102,8 @@ if __name__ == '__main__':
         dat_dir = os.environ['pnd']
         graph_loc = 'graphs'
         graph_dir = os.path.join(dat_dir, graph_loc)
+        if not os.path.exists(graph_dir):
+            os.makedirs(graph_dir)
         graph_outname = '%s.dens_%s.edgelist.gz' % (subjid, thresh_dens)
 
         gr = GRAPHS(subjid, pc_dat[d],
@@ -120,6 +122,8 @@ if __name__ == '__main__':
 
         mod_loc = 'modularity'
         mod_dir = os.path.join(dat_dir, mod_loc)
+        if not os.path.exists(mod_dir):
+            os.makedirs(mod_dir)
         niter = 100
         Qs = np.zeros(niter)
         trees = np.zeros(n_nodes*niter).reshape(n_nodes, niter)
