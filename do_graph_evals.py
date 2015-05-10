@@ -40,7 +40,8 @@ if __name__ == '__main__':
                        os.path.join(graph_dir, graph_outname))
 
         # making graph:
-        avg_r = gr.make_graph()
+        avg_r = np.zeros(1)
+        avg_r[0] = gr.make_graph()
         avg_r_val_name = 'Avg_r_val_%s.dens_%s.txt' % (subjid, thresh_dens)
         avg_r_out = os.path.join(graph_dir, avg_r_val_name)
         np.savetxt(avg_r_out, avg_r, fmt='%.4f')
@@ -57,9 +58,7 @@ if __name__ == '__main__':
         Qs = np.zeros(niter)
         trees = np.zeros(n_nodes*niter).reshape(n_nodes, niter)
         for i in xrange(niter):
-            c, q = gr.get_modularity(g)
-            Qs[i] = q
-            trees[:, i] = c
+            trees[:, i], Qs[i] = gr.get_modularity(g)
         Qs_outname = '%s.dens_%s.Qval' % (subjid, thresh_dens)
         np.savetxt(os.path.join(mod_dir, Qs_outname), Qs, fmt='%.4f')
         trees_outname = '%s.dens_%s.trees' % (subjid, thresh_dens)
