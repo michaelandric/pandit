@@ -10,6 +10,8 @@ import time
 import numpy as np
 import networkx as nx
 import bct
+from sklearn.metrics import normalized_mutual_info_score
+from sklearn.metrics import adjusted_rand_score
 
 
 class GRAPHS:
@@ -114,7 +116,6 @@ def adj_rand(p1, p2, ss):
     :param p2; partition 2
     :return : Adjusted Rand Score
     """
-    from sklearn.metrics import adjusted_rand_score
     if len(p1) != len(p2):
         print 'Subject %s needs a fix' % ss
         if len(p1) < len(p2):
@@ -134,7 +135,6 @@ def normalized_MI(p1, p2, ss):
     :param p2; partition 2
     :return : normalized mutual information score
     """
-    from sklearn.metrics import normalized_mutual_info_score
     if len(p1) != len(p2):
         print 'Subject %s needs a fix' % ss
         if len(p1) < len(p2):
