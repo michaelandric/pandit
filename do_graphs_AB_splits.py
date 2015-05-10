@@ -46,8 +46,9 @@ if __name__ == '__main__':
                 samp = random.sample(range(21), 20)
                 a = random.sample(samp, 10)
                 b = list(set(samp) - set(a))
-                for samp in ['a', 'b']:
-                    df = pc_dat[d].iloc[samp, 1:]
+                samp_dict = dict(zip(['a', 'b'], [a, b]))
+                for samp in samp_dict:
+                    df = pc_dat[d].iloc[samp_dict[samp], 1:]
                     graph_outname = 'iter%d.%s.%s.dens_%s.edgelist.gz' % \
                                     (x, samp, subjid, thresh_dens)
 
