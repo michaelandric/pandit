@@ -47,10 +47,10 @@ for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5']:
         a_max = a_Qs.argmax()
         tree_mat1[:, n] = trees_a[:, a_max]
 
-        b_Q_pref = 'iter%d.a.%s.dens_%s.Qval' % \
+        b_Q_pref = 'iter%d.b.%s.dens_%s.Qval' % \
             (n, subjid2, thresh_density)
         b_Qs = np.loadtxt(os.path.join(modularity_dir, b_Q_pref))
-        tree2_name = 'iter%d.a.%s.dens_%s.trees' % \
+        tree2_name = 'iter%d.b.%s.dens_%s.trees' % \
             (n, subjid2, thresh_density)
 
         trees_b = np.loadtxt(os.path.join(modularity_dir, tree2_name))
@@ -61,7 +61,7 @@ for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5']:
     # output_pref = 'between%s_%s_dens_%s_ARI.txt' % \
     #    (subjid1, subjid2, thresh_density)
     # output_pref = 'within%s_dens_%s_ARI.txt' % (subjid1, thresh_density)
-    output_pref = 'within2%s_dens%s_ARI.txt' % (subjid2, thresh_density)
+    output_pref = 'within%s_dens%s_ARI.txt' % (subjid2, thresh_density)
     for i, combo in enumerate(combinations(np.arange(100), 2)):
         tree_a = tree_mat1[:, combo[0]]
         tree_b = tree_mat2[:, combo[1]]
@@ -71,7 +71,7 @@ for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5']:
     # output_pref = 'between%s_%s_dens_%s_NMI.txt' % \
     #    (subjid1, subjid2, thresh_density)
     # output_pref = 'within%s_dens%s_NMI.txt' % (subjid1, thresh_density)
-    output_pref = 'within2%s_dens%s_NMI.txt' % (subjid2, thresh_density)
+    output_pref = 'within%s_dens%s_NMI.txt' % (subjid2, thresh_density)
     for i, combo in enumerate(combinations(np.arange(100), 2)):
         tree_a = tree_mat1[:, combo[0]]
         tree_b = tree_mat2[:, combo[1]]
