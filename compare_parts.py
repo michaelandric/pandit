@@ -60,8 +60,8 @@ for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5']:
     # Main section to run. DOING BOTH ARI AND NMI
     # output_pref = 'between%s_%s_dens_%s_ARI.txt' % \
     #    (subjid1, subjid2, thresh_density)
-    # output_pref = 'within%s_dens_%s_ARI.txt' % (subjid1, thresh_density)
-    output_pref = 'within%s_dens_%s_ARI.txt' % (subjid2, thresh_density)
+    output_pref = 'within%s_dens_%s_ARI.txt' % (subjid1, thresh_density)
+    # output_pref = 'within%s_dens_%s_ARI.txt' % (subjid2, thresh_density)
     print 'Doing Adj Rand'
     for i, combo in enumerate(combinations(np.arange(100), 2)):
         tree_a = tree_mat1[:, combo[0]]
@@ -71,8 +71,8 @@ for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5']:
 
     # output_pref = 'between%s_%s_dens_%s_NMI.txt' % \
     #    (subjid1, subjid2, thresh_density)
-    # output_pref = 'within%s_dens_%s_NMI.txt' % (subjid1, thresh_density)
-    output_pref = 'within%s_dens_%s_NMI.txt' % (subjid2, thresh_density)
+    output_pref = 'within%s_dens_%s_NMI.txt' % (subjid1, thresh_density)
+    # output_pref = 'within%s_dens_%s_NMI.txt' % (subjid2, thresh_density)
     print 'Doing NMI'
     for i, combo in enumerate(combinations(np.arange(100), 2)):
         tree_a = tree_mat1[:, combo[0]]
