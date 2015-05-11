@@ -22,7 +22,7 @@ out_dir = dat_dir+'/similarity_measures/'
 if not os.path.exists(out_dir):
     os.makedirs(out_dir)
 
-for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5', '0.6']:
+for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5']:
     subjid1 = 'pandit'
     subjid2 = 'ctrl'
     # subjid2 = subjid1
@@ -58,7 +58,7 @@ for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5', '0.6']:
         tree_mat2[:, n] = trees_b[:, b_max]
 
     # Main section to run. DOING BOTH ARI AND NMI
-    output_pref = 'between%s_%s_dens%s_ARI.txt' % \
+    output_pref = 'between%s_%s_dens_%s_ARI.txt' % \
         (subjid1, subjid2, thresh_density)
     # output_pref = 'within%s_dens%s_ARI.txt' % (subjid1, thresh_density)
     # output_pref = 'within%s_dens%s_ARI.txt' % (subjid2, thresh_density)
