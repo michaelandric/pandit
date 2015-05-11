@@ -14,18 +14,18 @@ from itertools import combinations
 dat_dir = os.environ['pnd']+'/AB_tests'
 os.chdir(dat_dir)
 print os.getcwd()
+niter = 100
+n_regions = 148
+modularity_loc = 'modularity'
+modularity_dir = os.path.join(dat_dir, modularity_loc)
 
 for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5', '0.6']:
     subjid1 = 'pandit'
     subjid2 = 'ctrl'
     # subjid2 = subjid1
     # subjid1 = subjid2
-    niter = 100
     n_combinations = ((niter**2)-niter)/2
     compare_out = np.array(np.zeros(n_combinations))   # prep output array
-
-    tree_dir = 'AB_tree_highest_dens%s' % thresh_density
-    n_regions = 148
 
     # Building array of inputs. These are the trees of highest modularity
     tree_mat1 = np.array(np.zeros(niter*n_regions))
@@ -33,24 +33,22 @@ for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5', '0.6']:
     tree_mat2 = np.array(np.zeros(niter*n_regions))
     tree_mat2 = tree_mat2.reshape(n_regions, niter)
 
-    modularity_loc = 'modularity'
-    modularity_dir = os.path.join(dat_dir, modularity_loc)
     for n in xrange(niter):
         print n
-        a_Q_pref = 'iter%d.%s.%s.dens_%s.Qval' % \
-            (n, 'a', subjid1, thresh_density)
+        a_Q_pref = 'iter%d.a.%s.dens_%s.Qval' % \
+            (n, subjid1, thresh_density)
         a_Qs = np.loadtxt(os.path.join(modularity_dir, a_Q_pref))
-        tree1_name = 'iter%d.%s.%s.dens_%s.trees' % \
-            (n, 'a', subjid1, thresh_density)
+        tree1_name = 'iter%d.a.%s.dens_%s.trees' % \
+            (n, subjid1, thresh_density)
         trees_a = np.loadtxt(os.path.join(modularity_dir, tree1_name))
         a_max = a_Qs.argmax()
         tree_mat1[:, n] = trees_a[:, a_max]
 
-        b_Q_pref = 'iter%d.%s.%s.dens_%s.Qval' % \
-            (n, 'b', subjid1, thresh_density)
+        b_Q_pref = 'iter%d.b.%s.dens_%s.Qval' % \
+            (n, subjid2, thresh_density)
         b_Qs = np.loadtxt(os.path.join(modularity_dir, b_Q_pref))
-        tree2_name = 'iter%d.%s.%s.dens_%s.trees' % \
-            (n, 'b', subjid1, thresh_density)
+        tree2_name = 'iter%d.b.%s.dens_%s.trees' % \
+            (n, subjid2, thresh_density)
 
         trees_b = np.loadtxt(os.path.join(modularity_dir, tree2_name))
         b_max = b_Qs.argmax()
