@@ -108,7 +108,7 @@ class GRAPHS:
         return n_mods
 
 
-def adj_rand(p1, p2, ss):
+def adj_rand(p1, p2):
     """
     Return the Adjusted Rand Index
     across two partitions
@@ -117,7 +117,7 @@ def adj_rand(p1, p2, ss):
     :return : Adjusted Rand Score
     """
     if len(p1) != len(p2):
-        print 'Subject %s needs a fix' % ss
+        print 'Subject needs a fix'
         if len(p1) < len(p2):
             p1 = np.append(p1, p1[len(p1)-1])
         elif len(p2) < len(p1):
@@ -127,7 +127,7 @@ def adj_rand(p1, p2, ss):
     return ari
 
 
-def normalized_MI(p1, p2, ss):
+def normalized_MI(p1, p2):
     """
     Return the normalized mutual information
     across two partitions
@@ -136,7 +136,7 @@ def normalized_MI(p1, p2, ss):
     :return : normalized mutual information score
     """
     if len(p1) != len(p2):
-        print 'Subject %s needs a fix' % ss
+        print 'Subject needs a fix'
         if len(p1) < len(p2):
             p1 = np.append(p1, p1[len(p1)-1])
         elif len(p2) < len(p1):
