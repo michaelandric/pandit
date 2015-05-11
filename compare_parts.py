@@ -18,6 +18,9 @@ niter = 100
 n_regions = 148
 modularity_loc = 'modularity'
 modularity_dir = os.path.join(dat_dir, modularity_loc)
+out_dir = dat_dir+'/similarity_measures/'
+if not os.path.exists(out_dir):
+    os.makedirs(out_dir)
 
 for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5', '0.6']:
     subjid1 = 'pandit'
@@ -63,7 +66,7 @@ for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5', '0.6']:
         tree_a = tree_mat1[:, combo[0]]
         tree_b = tree_mat2[:, combo[1]]
         compare_out[i] = ge.adj_rand(tree_a, tree_b)
-    np.savetxt(output_pref, compare_out, fmt='%.4f')
+    np.savetxt(os.path.join(out_dir, output_pref), compare_out, fmt='%.4f')
 
     output_pref = 'between%s_%s_dens_%s_NMI.txt' % \
         (subjid1, subjid2, thresh_density)
@@ -73,4 +76,4 @@ for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5', '0.6']:
         tree_a = tree_mat1[:, combo[0]]
         tree_b = tree_mat2[:, combo[1]]
         compare_out[i] = ge.normalized_MI(tree_a, tree_b)
-    np.savetxt(output_pref, compare_out, fmt='%.4f')
+    np.savetxt(os.path.join(out_dir, output_pref), compare_out, fmt='%.4f')
