@@ -23,10 +23,10 @@ if not os.path.exists(out_dir):
     os.makedirs(out_dir)
 
 for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5']:
-    # subjid1 = 'pandit'
-    subjid2 = 'ctrl'
-    # subjid2 = subjid1
-    subjid1 = subjid2
+    subjid1 = 'pandit'
+    # subjid2 = 'ctrl'
+    subjid2 = subjid1
+    # subjid1 = subjid2
     n_combinations = ((niter**2)-niter)/2
     compare_out = np.array(np.zeros(n_combinations))   # prep output array
 
@@ -37,7 +37,7 @@ for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5']:
     tree_mat2 = tree_mat2.reshape(n_regions, niter)
 
     for n in xrange(niter):
-        print n
+        print 'Setting up tree_mats'
         a_Q_pref = 'iter%d.a.%s.dens_%s.Qval' % \
             (n, subjid1, thresh_density)
         a_Qs = np.loadtxt(os.path.join(modularity_dir, a_Q_pref))
@@ -62,6 +62,7 @@ for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5']:
     #    (subjid1, subjid2, thresh_density)
     # output_pref = 'within%s_dens_%s_ARI.txt' % (subjid1, thresh_density)
     output_pref = 'within%s_dens_%s_ARI.txt' % (subjid2, thresh_density)
+    print 'Doing Adj Rand'
     for i, combo in enumerate(combinations(np.arange(100), 2)):
         tree_a = tree_mat1[:, combo[0]]
         tree_b = tree_mat2[:, combo[1]]
@@ -72,6 +73,7 @@ for thresh_density in ['0.1', '0.2', '0.3', '0.4', '0.5']:
     #    (subjid1, subjid2, thresh_density)
     # output_pref = 'within%s_dens_%s_NMI.txt' % (subjid1, thresh_density)
     output_pref = 'within%s_dens_%s_NMI.txt' % (subjid2, thresh_density)
+    print 'Doing NMI'
     for i, combo in enumerate(combinations(np.arange(100), 2)):
         tree_a = tree_mat1[:, combo[0]]
         tree_b = tree_mat2[:, combo[1]]
