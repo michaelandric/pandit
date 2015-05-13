@@ -23,7 +23,7 @@ if __name__ == '__main__':
     dfcols = ['region', 'community']
 
     for subjid in subj_list:
-        for thresh_dens in np.arange(.2, .51, .1):
+        for thresh_dens in np.arange(.1, .51, .1):
             q_name = '%s.dens_%s.Qval' % (subjid, thresh_dens)
             qscores = np.loadtxt(os.path.join(modularity_dir, q_name))
             maxiter = qscores.argmax()
