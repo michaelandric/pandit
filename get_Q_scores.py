@@ -55,6 +55,6 @@ if __name__ == '__main__':
                 rand_name = 'iter%d_rand_%s.dens_%s.Qval' % \
                     (n, subjid, thresh_dens)
                 rand_file = os.path.join(mod_dir, rand_name)
-                trees, Qs[n] = gr.max_q(rand_file)
+                Qs[n], iterq = gr.max_q(rand_file)
             Qs_outname = 'rand_%s.dens_%s.Qval' % (subjid, thresh_dens)
             np.savetxt(os.path.join(mod_dir, Qs_outname), Qs, fmt='%.4f')
