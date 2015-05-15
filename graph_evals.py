@@ -90,7 +90,7 @@ class GRAPHS:
         """
         print 'Getting max q value -- %s' % time.ctime()
         q_vals = np.loadtxt(fname)
-        iter_max = q_vals.argmax()+1
+        iter_max = q_vals.argmax()
         return (np.max(q_vals), iter_max)
 
     def n_modules(self, tname):
