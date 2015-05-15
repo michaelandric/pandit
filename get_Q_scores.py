@@ -21,7 +21,7 @@ if __name__ == '__main__':
     random_graph_dir = random_dir+'/graphs/'
     if not os.path.exists(random_graph_dir):
         os.makedirs(random_graph_dir)
-    df = pd.read_csv('pandit_data.csv')
+    df = pd.read_csv(os.path.join(dat_dir, 'pandit_data.csv'))
     p_df = df.iloc[0:21, 1:]
     c_df = df.iloc[21:42, 1:]
     subj_list = ['pandit', 'ctrl']
