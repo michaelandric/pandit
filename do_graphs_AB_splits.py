@@ -26,19 +26,20 @@ if __name__ == '__main__':
     dat.append(c_df)
     pc_dat = dict(zip(subj_list, dat))
 
-    #for d in pc_dat:
-    for d in ['pandit']:
+    dat_dir = os.environ['pnd']+'/AB_tests/'
+    if not os.path.exists(dat_dir):
+        os.makedirs(dat_dir)
+    graph_loc = 'graphs'
+    graph_dir = os.path.join(dat_dir, graph_loc)
+    if not os.path.exists(graph_dir):
+        os.makedirs(graph_dir)
+
+    # for d in pc_dat:
+    for d in ['ctrl']:
         for thresh_dens in np.arange(.1, .51, .1):
             print 'Thresh: %s' % thresh_dens
             print time.ctime()
             subjid = d
-            dat_dir = os.environ['pnd']+'/AB_tests/'
-            if not os.path.exists(dat_dir):
-                os.makedirs(dat_dir)
-            graph_loc = 'graphs'
-            graph_dir = os.path.join(dat_dir, graph_loc)
-            if not os.path.exists(graph_dir):
-                os.makedirs(graph_dir)
 
             niter = 100
             avg_r_a = np.zeros(niter)
