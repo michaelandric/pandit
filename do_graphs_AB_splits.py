@@ -52,7 +52,7 @@ if __name__ == '__main__':
                     graph_outname = 'iter%d.%s.%s.dens_%s.edgelist.gz' % \
                                     (x, samp, subjid, thresh_dens)
 
-                    gr = ge.GRAPHS(subjid, pc_dat[d],
+                    gr = ge.GRAPHS(subjid, df,
                                    thresh_dens, graph_dir,
                                    os.path.join(graph_dir, graph_outname))
 
