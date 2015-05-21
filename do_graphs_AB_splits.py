@@ -26,7 +26,8 @@ if __name__ == '__main__':
     dat.append(c_df)
     pc_dat = dict(zip(subj_list, dat))
 
-    for d in pc_dat:
+    #for d in pc_dat:
+    for d in ['pandit']:
         for thresh_dens in np.arange(.1, .51, .1):
             print 'Thresh: %s' % thresh_dens
             print time.ctime()
