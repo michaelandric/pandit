@@ -33,7 +33,7 @@ def complex_network_mapping(graph):
 #    adj_bin = np.where(adj > 0, 1., 0.)
 #    adj_conn = 1 - adj
     adj_bin = nx.adjacency_matrix(graph).toarray()
-    adj_bin = np.array(adj, dtype=np.float)
+    adj_bin = np.array(adj_bin, dtype=np.float)
 
     # Node Betweenness binary
     bt_bin = nx.betweenness_centrality(graph).values()
@@ -55,9 +55,13 @@ def complex_network_mapping(graph):
     vect.append(avg_flow)
 
     # Kcoreness centrality
-#    kcor_bin, _ = kcoreness_centrality_bu(adj_bin)
-#    avg_kcor = np.mean(kcor_bin)
-#    vect.append(avg_kcor)
+    kcor_bin, _ = kcoreness_centrality_bu(adj_bin)
+    avg_kcor = np.mean(kcor_bin)
+    vect.append(avg_kcor)
+
+    # Degree assortivity
+    dac = nx.degree_assortativity_coefficient(graph)
+    vect.append(dac)
 
     # Page rank centrality
 #    pgr_wei = pagerank_centrality(adj_bin, d=0.85)
@@ -95,12 +99,12 @@ def complex_networks_mapping_uri_data(directory):
     vects = []
 
     # have 100 graphs already built
-    niter = 20
+    niter = 100
     for subjid in ['pandit', 'ctrl']:
         thresh_dens = '0.1'
         for n in range(niter):
             subj_name = '%s_%d' % (subjid, n)
-            g_name = 'iter%d.b.%s.dens_%s.edgelist.gz' % \
+            g_name = 'iter%d.a.%s.dens_%s.edgelist.gz' % \
                 (n, subjid, thresh_dens)
             el = nx.read_edgelist(os.path.join(directory, g_name),
                                   nodetype=int)
