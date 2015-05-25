@@ -81,6 +81,9 @@ def complex_network_mapping(graph):
     avg_clst = nx.average_clustering(graph)
     vect.append(avg_clst)
 
+    glb_ef = efficiency_bin(adj_bin)
+    vect.append(glb_ef)
+
     return vect
 
 
@@ -148,9 +151,25 @@ def complex_networks_mapping_uri_data(directory):
     print np.mean(X)
     print np.max(X)
 
-    clf = SVC()
+    tuned_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4],
+                     'C': [1, 10, 100, 1000]},
+                    {'kernel': ['linear'], 'C': [1, 10, 100, 1000]}]
+    clf = GridSearchCV(SVC(C=1), tuned_parameters, cv=KFold(len(nm_classes), niter, shuffle=False))
+    clf.fit(X, np.array(nm_classes))
+    clf.best_params_
+    clf = SVC(C=100, kernel='linear')
     print "Now getting cross validation "
+    cvr = SVC(C=1000, gamma=.001, kernel='rbf')
+    cv_scores = cross_val_score(cvr, X, np.array(nm_classes),
+                                cv=KFold(len(nm_classes),
+                                         niter, shuffle=False))
+
     cv_scores = cross_val_score(clf, X, np.array(nm_classes),
+                                cv=KFold(len(nm_classes),
+                                         niter, shuffle=False))
+
+    clfGD = SGDClassifier()
+    cv_scores = cross_val_score(clfGD, X, np.array(nm_classes),
                                 cv=KFold(len(nm_classes),
                                          niter, shuffle=False))
     print cv_scores
