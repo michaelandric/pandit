@@ -154,7 +154,17 @@ def complex_networks_mapping_uri_data(directory):
     tuned_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4],
                      'C': [1, 10, 100, 1000]},
                     {'kernel': ['linear'], 'C': [1, 10, 100, 1000]}]
+
+    tuned_parameters2 = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4],
+                     'C': [1, 10, 100, 1000]},
+                     {'kernel': ['sigmoid'], 'gamma': [1e-3, 1e-4],
+                     'C': [1, 10, 100, 1000]},
+                     {'kernel': ['linear'], 'C': [1, 10, 100, 1000]}]
+
+
+    from sklearn.grid_search import GridSearchCV
     clf = GridSearchCV(SVC(C=1), tuned_parameters, cv=KFold(len(nm_classes), niter, shuffle=False))
+    clf2 = GridSearchCV(SVC(C=1), tuned_parameters2, cv=KFold(len(nm_classes), niter, shuffle=False))
     clf.fit(X, np.array(nm_classes))
     clf.best_params_
     clf = SVC(C=100, kernel='linear')
@@ -164,11 +174,19 @@ def complex_networks_mapping_uri_data(directory):
                                 cv=KFold(len(nm_classes),
                                          niter, shuffle=False))
 
+    cv_scores = cross_val_score(cvr, X, np.array(nm_classes),
+                                cv=KFold(len(nm_classes),
+                                         niter, shuffle=False))
+
+
     cv_scores = cross_val_score(clf, X, np.array(nm_classes),
                                 cv=KFold(len(nm_classes),
                                          niter, shuffle=False))
 
-    clfGD = SGDClassifier()
+
+    from sklearn.linear_model import SGDClassifier
+    clfGD = SGDClassifier(loss='log')
+    clfGD.fit(X, np.array(nm_classes))
     cv_scores = cross_val_score(clfGD, X, np.array(nm_classes),
                                 cv=KFold(len(nm_classes),
                                          niter, shuffle=False))
@@ -176,3 +194,18 @@ def complex_networks_mapping_uri_data(directory):
     print np.mean(cv_scores)
     print("Accuracy: %0.2f (+/- %0.2f)" %
         (cv_scores.mean(), cv_scores.std() * 2))
+
+     from sklearn.dummy import DummyClassifier
+     null_scores = cross_val_score(DummyClassifier(), X, np.array(nm_classes),
+                                   cv=KFold(len(nm_classes),
+                                            niter, shuffle=False))
+
+     print null_scores.mean()
+
+     from sklearn.cross_validation import permutation_test_score
+     null_scores_perm = permutation_test_score(cvr, X, np.array(nm_classes),
+                                               cv=KFold(len(nm_classes),
+                                                        niter, shuffle=False))
+
+     print null_scores_perm.mean()
+
