@@ -154,7 +154,8 @@ def complex_networks_mapping_uri_data(directory):
     tuned_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-4],
                      'C': [1, 10, 100, 1000]},
                     {'kernel': ['linear'], 'C': [1, 10, 100, 1000]}]
-    clf = GridSearchCV(SVC(C=1), tuned_parameters, cv=KFold(len(nm_classes), niter, shuffle=False))
+    clf = GridSearchCV(SVC(C=1), tuned_parameters, cv=KFold(len(nm_classes),
+                           niter, shuffle=False))
     clf.fit(X, np.array(nm_classes))
     clf.best_params_
     clf = SVC(C=100, kernel='linear')
@@ -179,9 +180,22 @@ def complex_networks_mapping_uri_data(directory):
     xnew = xtc.fit(X, np.array(nm_classes)).transform(X)
     print xtc.feature_importances_
 
-    ns = cross_val_score(cvr, xnew, np.array(nm_classes),
+    ns = cross_val_score(SVC(kernel='linear'), xnew, np.array(nm_classes),
                          cv=KFold(len(nm_classes),
                                   niter, shuffle=False))
+    print ns.mean()
+
+    from sklearn.pipeline import Pipeline
+    from sklearn.ensemble import RandomForestClassifier
+    fp = Pipeline([('feature_selection', LinearSVC(penalty="l2")),
+                    ('classification', RandomForestClassifier())])
+    fpfit = fp.fit(X, np.array(nm_classes))
+    fpfit.score(X, np.array(nm_classes))
+#    fpcv = cross_val_score(fpfit, X, np.array(nm_classes),
+#                    cv=KFold(len(nm_classes), niter, shuffle=False))
+    rf = RandomForestClassifier()
+    rf.fit(X, np.array(nm_classes))
+    rfx = rf.fit(X, np.array(nm_classes)).transform(X)    
 
 
     print cv_scores
