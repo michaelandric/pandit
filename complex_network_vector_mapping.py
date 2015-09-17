@@ -172,6 +172,18 @@ def complex_networks_mapping_uri_data(directory):
     cv_scores = cross_val_score(clfGD, X, np.array(nm_classes),
                                 cv=KFold(len(nm_classes),
                                          niter, shuffle=False))
+
+
+    from sklearn.ensemble import ExtraTreesClassifier
+    xtc = ExtraTreesClassifier()
+    xnew = xtc.fit(X, np.array(nm_classes)).transform(X)
+    print xtc.feature_importances_
+
+    ns = cross_val_score(cvr, xnew, np.array(nm_classes),
+                         cv=KFold(len(nm_classes),
+                                  niter, shuffle=False))
+
+
     print cv_scores
     print np.mean(cv_scores)
     print("Accuracy: %0.2f (+/- %0.2f)" %
